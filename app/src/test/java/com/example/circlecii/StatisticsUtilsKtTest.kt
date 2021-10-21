@@ -1,9 +1,11 @@
 package com.example.circlecii
 
 import junit.framework.TestCase
+import org.junit.Test
 
 class StatisticsUtilsKtTest : TestCase() {
 
+    @Test
     fun testGetActiveAndCompletedStats() {
 
         // Create an active task (the false makes this active)
