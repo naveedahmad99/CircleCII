@@ -154,7 +154,7 @@ workflows:
 #      - testing
       - unit-test
       - sonar
-      - testingSonar
+#      - testingSonar
 #  sonarcloud:
 #    jobs:
 #      - build:
