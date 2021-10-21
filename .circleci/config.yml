@@ -136,7 +136,7 @@ workflows:
 
   test-lint:
     jobs:
-      - testing
+#      - testing
       - unit-test
       - sonar
 #  sonarcloud:

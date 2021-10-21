@@ -81,7 +81,7 @@ android {
 }
 
 dependencies {
-
+//    implementation group: 'org.jacoco', name: 'org.jacoco.agent', version: '0.8.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
@@ -106,10 +106,10 @@ sonarqube {
         property "sonar.java.binaries", "build/tmp/kotlin-classes"
         property "sonar.java.test.binaries", "build/intermediates/classes/test/,build/tmp/kotlin-classes/devDebugUnitTest"
         property "sonar.tests","src/test/java"
-//        property "sonar.sources","src/main/java"
-//        property "sonar.java.coveragePlugin", "jacoco"
-//        property "sonar.jacoco.reportPaths","build/jacoco/testDevDebugUnitTest.exec"
-//        property "sonar.junit.reportsPath","build/test-results/testDevDebugUnitTest"
+        property "sonar.sources","src/main/java"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.jacoco.reportPaths","build/jacoco/testDevDebugUnitTest.exec"
+        property "sonar.junit.reportsPath","build/test-results/testDevDebugUnitTest"
     }
 }
 
