@@ -16,9 +16,6 @@ jobs:
     steps:
       - checkout
       - sonarcloud/scan
-      - run:
-          name: run sonarcube
-          command: ./gradlew sonarcube
 
   unit-test:
     executor:
@@ -77,6 +74,20 @@ jobs:
       - run:
           name: Run Lint
           command: ./gradlew ktlintDebugCheck
+
+  testingSonar:
+    executor:
+      name: android/android-machine
+      resource-class: xlarge
+    steps:
+      - checkout
+      #      - bundle exec fastlane
+      - run:
+          name: chmod permissions
+          command: chmod +x ./gradlew
+      - run:
+          name: Run Lint
+          command: ./gradlew sonarcube
 
   release-build:
     executor:
@@ -143,6 +154,7 @@ workflows:
 #      - testing
       - unit-test
       - sonar
+      - testingSonar
 #  sonarcloud:
 #    jobs:
 #      - build:
