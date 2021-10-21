@@ -17,8 +17,8 @@ jobs:
       - checkout
       - sonarcloud/scan
       - run:
-          name: chmod permissions
-          command: chmod +x ./gradlew sonarcube
+          name: run sonarcube
+          command: ./gradlew sonarcube
 
   unit-test:
     executor:
