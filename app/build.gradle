@@ -2,13 +2,13 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 //    id 'jacoco'
-    id "org.sonarqube"
+    id "org.sonarqube" version "3.3"
 }
-apply plugin: 'jacoco'
-
-jacoco {
-    toolVersion = '0.8.5'
-}
+//apply plugin: 'jacoco'
+//
+//jacoco {
+//    toolVersion = '0.8.5'
+//}
 
 ext.versionMajor = 1
 ext.versionMinor = 0
@@ -94,9 +94,9 @@ dependencies {
 
 sonarqube {
     properties {
-        property "sonar.projectName", "CircleCII"
-        property "sonar.projectKey", "CircleCII"
-        property "sonar.organisation", "CircleCII"
+        property "sonar.projectKey", "com.example.circlecii"
+        property "sonar.organization", "nidoorg"
+        property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.sources","src/main/java"
         property "sonar.language","java"
         property "sonar.sourceEncoding", "UTF-8"
@@ -112,47 +112,47 @@ sonarqube {
     }
 }
 
-testOptions {
-    unitTests {
-        includeAndroidResources = true
-        unitTests.returnDefaultValues = true
-    }
-}
+//testOptions {
+//    unitTests {
+//        includeAndroidResources = true
+//        unitTests.returnDefaultValues = true
+//    }
+//}
 
-task jacocoTestReport(type: JacocoReport,
-        dependsOn: ['testDebugUnitTest',
-                    'createDebugCoverageReport']) {
-    group = "Reporting"
-    description = "Generate Jacoco coverage reports after running tests."
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
-    def fileFilter = ['androidx/**/*.*',
-                      '**/view/*.*',
-                      '**/data/*.*',
-                      '**/data/model/*.*',
-                      '**/generated/callback/*.*',
-                      '**/lambda$*.class',
-                      '**/lambda.class',
-                      '**/*lambda.class',
-                      '**/*lambda*.class']
-
-    def debugTree = fileTree(dir:
-            "${buildDir}/intermediates/javac/debug/classes",
-            excludes: fileFilter
-    )
-
-    def mainSrc = "/src/main/java"
-
-    sourceDirectories = files([mainSrc])
-
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: "${buildDir}", includes:[
-            "/jacoco/testDebugUnitTest.exec"])
-}
+//task jacocoTestReport(type: JacocoReport,
+//        dependsOn: ['testDebugUnitTest',
+//                    'createDebugCoverageReport']) {
+//    group = "Reporting"
+//    description = "Generate Jacoco coverage reports after running tests."
+//
+//    reports {
+//        xml.enabled = true
+//        html.enabled = true
+//    }
+//
+//    def fileFilter = ['androidx/**/*.*',
+//                      '**/view/*.*',
+//                      '**/data/*.*',
+//                      '**/data/model/*.*',
+//                      '**/generated/callback/*.*',
+//                      '**/lambda$*.class',
+//                      '**/lambda.class',
+//                      '**/*lambda.class',
+//                      '**/*lambda*.class']
+//
+//    def debugTree = fileTree(dir:
+//            "${buildDir}/intermediates/javac/debug/classes",
+//            excludes: fileFilter
+//    )
+//
+//    def mainSrc = "/src/main/java"
+//
+//    sourceDirectories = files([mainSrc])
+//
+//    classDirectories = files([debugTree])
+//    executionData = fileTree(dir: "${buildDir}", includes:[
+//            "/jacoco/testDebugUnitTest.exec"])
+//}
 
 
 //jacocoTestReport {
